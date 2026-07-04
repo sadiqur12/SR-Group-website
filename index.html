@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SR Group — custom software & AI assistants</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDI0MCAyNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJTUiBHcm91cCBpY29uIj4KPHRpdGxlPlNSIEdyb3VwPC90aXRsZT4KPGRlZnM+CjxzdHlsZT4KICBAaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1Sb2JvdG8rU2xhYjp3Z2h0QDcwMCZhbXA7ZmFtaWx5PUlCTStQbGV4K01vbm86d2dodEA1MDA7NjAwJmFtcDtkaXNwbGF5PXN3YXAnKTsKICAuc2xhYnsgZm9udC1mYW1pbHk6J1JvYm90byBTbGFiJywgc2VyaWY7IH0KICAubW9ub3sgZm9udC1mYW1pbHk6J0lCTSBQbGV4IE1vbm8nLCBtb25vc3BhY2U7IH0KPC9zdHlsZT4KPC9kZWZzPgoKPHJlY3Qgd2lkdGg9IjI0MCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiNGNkYxRTIiLz4KPGNpcmNsZSBjeD0iMTIwIiBjeT0iMTIwIiByPSIxMDAiIGZpbGw9IiMxNjMwMkEiLz4KPGNpcmNsZSBjeD0iMTIwIiBjeT0iMTIwIiByPSIxMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E4ODYzQyIgc3Ryb2tlLXdpZHRoPSI1Ii8+CjxjaXJjbGUgY3g9IjEyMCIgY3k9IjEyMCIgcj0iODQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E4ODYzQyIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjMgNSIvPgoKPHRleHQgeD0iMTIwIiB5PSIxNDAiIGNsYXNzPSJzbGFiIiBmb250LXNpemU9IjY0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjRjZGMUUyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TUjwvdGV4dD4KCjx0ZXh0IHg9IjEyMCIgeT0iNjgiIGNsYXNzPSJtb25vIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iNjAwIiBsZXR0ZXItc3BhY2luZz0iMyIgZmlsbD0iIzlGQzJCNCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RVNULiAyMDI2PC90ZXh0Pgo8dGV4dCB4PSIxMjAiIHk9IjE4MiIgY2xhc3M9Im1vbm8iIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSI2MDAiIGxldHRlci1zcGFjaW5nPSIyIiBmaWxsPSIjOUZDMkI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5HUk9VUDwvdGV4dD4KPC9zdmc+Cg==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cover: #16302A;
+    --cover-light: #23473C;
+    --paper: #F6F1E2;
+    --paper-line: #CBBE97;
+    --ink: #1C231F;
+    --ink-soft: #5B6459;
+    --stamp: #A63A2E;
+    --stamp-deep: #7C2B22;
+    --gold: #A8863C;
+    --white: #FFFDF8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  .slab{font-family:'Roboto Slab',serif;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 24px;}
+  section{padding:88px 0;}
+  @media (max-width:700px){ section{padding:56px 0;} }
+
+  /* ---- ledger rule background for paper sections ---- */
+  .ruled{
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent, transparent 37px,
+      var(--paper-line) 37px, var(--paper-line) 38px
+    );
+  }
+
+  /* ---- nav ---- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:var(--cover); color:var(--white);
+    border-bottom:3px solid var(--gold);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:16px; padding-bottom:16px;
+  }
+  .logo{
+    font-family:'Roboto Slab',serif; font-weight:700; font-size:19px; letter-spacing:0.01em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo-mark{width:34px; height:34px; flex-shrink:0;}
+  .logo .ref{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; color:#9FC2B4;
+    border:1px solid #3A5C50; padding:3px 8px; border-radius:3px; letter-spacing:0.03em;
+  }
+  .nav-links{display:flex; gap:26px; font-size:13.5px; font-weight:500; color:#C9DED5;}
+  .nav-links a{text-decoration:none;}
+  .nav-links a:hover{color:var(--white);}
+  .nav-cta{
+    background:var(--stamp); color:var(--white);
+    padding:9px 18px; font-size:13px; font-weight:600;
+    text-decoration:none; white-space:nowrap; border-radius:3px;
+  }
+  @media (max-width:700px){ .nav-links{display:none;} }
+
+  /* ---- hero (ledger cover) ---- */
+  .hero{
+    background:var(--cover); color:var(--white);
+    padding:72px 0 96px;
+    position:relative;
+    border-bottom:3px solid var(--gold);
+  }
+  .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:52px; align-items:start;}
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;} }
+  .entry-tag{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em;
+    color:#9FC2B4; margin-bottom:20px; display:flex; align-items:center; gap:10px;
+  }
+  .entry-tag::before{content:''; width:22px; height:1px; background:#3A5C50;}
+  h1{
+    font-family:'Roboto Slab',serif; font-weight:700; letter-spacing:-0.01em;
+    font-size:46px; line-height:1.1; margin-bottom:20px;
+  }
+  @media (max-width:860px){ h1{font-size:32px;} }
+  h1 .accent{color:#D9B25A;}
+  .hero p.lede{font-size:16.5px; color:#C9DED5; max-width:460px; margin-bottom:30px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--stamp); color:var(--white); font-weight:700; font-size:14px;
+    padding:14px 24px; border-radius:3px; text-decoration:none; display:inline-block;
+  }
+  .btn-secondary{
+    border:1px solid #3A5C50; color:var(--white); font-weight:600; font-size:14px;
+    padding:14px 24px; border-radius:3px; text-decoration:none; display:inline-block;
+  }
+
+  /* ---- docket / chat demo card ---- */
+  .docket{
+    background:var(--paper); color:var(--ink); border-radius:4px;
+    box-shadow:0 30px 70px -30px rgba(0,0,0,0.5);
+    position:relative;
+  }
+  .docket::before{
+    content:''; position:absolute; top:-8px; left:0; right:0; height:16px;
+    background-image: radial-gradient(circle, var(--cover) 4px, transparent 4.5px);
+    background-size: 20px 16px; background-position: 10px 0; background-repeat: repeat-x;
+  }
+  .docket-inner{padding:26px;}
+  .docket-head{
+    display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;
+    padding-bottom:12px; border-bottom:1px dashed var(--paper-line);
+  }
+  .docket-head .t{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); letter-spacing:0.04em;}
+  .bubble{
+    max-width:85%; padding:10px 14px; border-radius:8px; font-size:14px; margin-bottom:10px;
+    line-height:1.5; opacity:0; transform:translateY(6px);
+  }
+  .bubble.user{background:var(--cover); color:var(--white); margin-left:auto; border-bottom-right-radius:2px;}
+  .bubble.assistant{background:#E8E1CB; color:var(--ink); border-bottom-left-radius:2px;}
+  .bubble.show{animation:riseIn 0.5s ease forwards;}
+  @keyframes riseIn{ to{opacity:1; transform:translateY(0);} }
+
+  /* ---- section heads ---- */
+  .section-head{max-width:600px; margin-bottom:40px;}
+  .section-head .entry-tag{color:var(--gold);}
+  .section-head .entry-tag::before{background:var(--paper-line);}
+  .section-head h2{font-family:'Roboto Slab',serif; font-weight:700; font-size:28px; margin-bottom:8px;}
+  .section-head p{color:var(--ink-soft); font-size:15px;}
+
+  /* ---- services as ledger table ---- */
+  .ledger-table{border-top:2px solid var(--ink);}
+  .ledger-row{
+    display:grid; grid-template-columns:60px 1fr 160px; gap:18px; align-items:start;
+    padding:22px 0; border-bottom:1px solid var(--paper-line);
+  }
+  @media (max-width:700px){ .ledger-row{grid-template-columns:44px 1fr; } .ledger-row .status{grid-column:1/-1; margin-top:6px;} }
+  .ledger-row .no{font-family:'IBM Plex Mono',monospace; color:var(--gold); font-weight:600; font-size:14px;}
+  .ledger-row h3{font-family:'Roboto Slab',serif; font-size:17px; font-weight:600; margin-bottom:5px;}
+  .ledger-row p{color:var(--ink-soft); font-size:14px;}
+  .ledger-row .status{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--stamp-deep);
+    display:flex; align-items:center; gap:6px; justify-self:end; white-space:nowrap;
+  }
+  .ledger-row .status::before{content:'✓'; font-weight:700;}
+
+  /* ---- work: receipt stub ---- */
+  .receipt{
+    background:var(--white); border:1px solid var(--paper-line);
+    max-width:460px; margin:0 auto; padding:32px 28px; position:relative;
+    box-shadow:0 20px 50px -25px rgba(0,0,0,0.25);
+  }
+  .receipt::before, .receipt::after{
+    content:''; position:absolute; width:20px; height:20px; background:var(--paper);
+    border-radius:50%; top:50%; transform:translateY(-50%);
+  }
+  .receipt::before{left:-10px;} .receipt::after{right:-10px;}
+  .receipt-head{text-align:center; padding-bottom:16px; border-bottom:1px dashed var(--paper-line); margin-bottom:16px;}
+  .receipt-head .slab{font-size:19px; font-weight:700;}
+  .receipt-head .mono{font-size:11px; color:var(--ink-soft); letter-spacing:0.04em;}
+  .receipt-line{display:flex; justify-content:space-between; font-size:13.5px; padding:7px 0; color:var(--ink-soft);}
+  .receipt-line b{color:var(--ink); font-weight:600;}
+  .receipt-tags{display:flex; gap:6px; flex-wrap:wrap; margin:14px 0;}
+  .receipt-tags span{font-family:'IBM Plex Mono',monospace; font-size:10.5px; background:#E8E1CB; padding:4px 8px; border-radius:2px;}
+  .stamp-badge{
+    margin-top:18px; text-align:center; font-family:'IBM Plex Mono',monospace;
+    color:var(--stamp); border:2px solid var(--stamp); border-radius:6px;
+    padding:8px; font-weight:700; letter-spacing:0.08em; font-size:12.5px;
+    transform:rotate(-3deg); display:inline-block;
+  }
+  .receipt-foot{text-align:center; margin-top:14px;}
+
+  /* ---- process: transaction history ---- */
+  .history-item{
+    display:grid; grid-template-columns:110px 1fr; gap:20px; padding:20px 0;
+    border-bottom:1px solid var(--paper-line);
+  }
+  @media (max-width:700px){ .history-item{grid-template-columns:1fr;} }
+  .history-item .date{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--gold); font-weight:600;}
+  .history-item h4{font-family:'Roboto Slab',serif; font-weight:600; font-size:17px; margin-bottom:5px;}
+  .history-item p{color:var(--ink-soft); font-size:14px; max-width:520px;}
+
+  /* ---- contact: signature line ---- */
+  .contact-panel{
+    background:var(--cover); color:var(--white); border-radius:4px;
+    padding:52px 32px; text-align:center; position:relative; border:3px solid var(--gold);
+  }
+  .contact-panel h2{font-family:'Roboto Slab',serif; font-weight:700; font-size:28px; margin-bottom:12px;}
+  .contact-panel p{color:#C9DED5; font-size:15px; margin-bottom:28px; max-width:440px; margin-left:auto; margin-right:auto;}
+  .contact-methods{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:28px;}
+  .contact-methods a{
+    border:1px solid #3A5C50; border-radius:3px; padding:12px 20px; text-decoration:none;
+    font-size:13.5px; font-weight:600; display:flex; align-items:center; gap:8px; color:var(--white);
+  }
+  .contact-methods a:hover{background:#1F473C;}
+  .stamp-rotate{
+    display:inline-block; border:2px dashed #D9B25A; color:#D9B25A;
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:700;
+    padding:10px 18px; border-radius:50%; transform:rotate(-8deg); letter-spacing:0.06em;
+  }
+
+  footer{padding:32px 0; text-align:center; color:var(--ink-soft); font-size:12px; background:var(--paper);}
+  footer .mono{font-size:11px;}
+  .footer-logo{width:120px; height:auto; margin:0 auto 14px; display:block;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">
+      <svg class="logo-mark" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="120" cy="120" r="100" fill="#0E211C"/>
+        <circle cx="120" cy="120" r="100" fill="none" stroke="#A8863C" stroke-width="6"/>
+        <circle cx="120" cy="120" r="84" fill="none" stroke="#A8863C" stroke-width="2" stroke-dasharray="4 7"/>
+        <text x="120" y="145" font-family="'Roboto Slab',serif" font-size="70" font-weight="700" fill="#F6F1E2" text-anchor="middle">SR</text>
+      </svg>
+      SR Group <span class="ref">No. 2026–01</span>
+    </div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+    </div>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="entry-tag">ENTRY — NEW CLIENT</div>
+      <h1>We build assistants that <span class="accent">speak your customer's language</span></h1>
+      <p class="lede">SR Group designs and builds custom AI assistants, web apps, and automation tools for small and growing businesses — working in both English and বাংলা from day one.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">Start a project</a>
+        <a href="#work" class="btn-secondary">See our work</a>
+      </div>
+    </div>
+
+    <div class="docket">
+      <div class="docket-inner">
+        <div class="docket-head">
+          <span class="t">SR GROUP ASSISTANT — LIVE PREVIEW</span>
+          <span class="t">✓ ACTIVE</span>
+        </div>
+        <div id="chat-demo"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="services" class="ruled">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="entry-tag">LEDGER — SERVICES</div>
+      <h2>Software your team actually uses</h2>
+      <p>Every project starts with how your business already works — not a generic template.</p>
+    </div>
+    <div class="ledger-table">
+      <div class="ledger-row">
+        <div class="no">01</div>
+        <div><h3>AI assistants</h3><p>Bilingual chat assistants for customer support, bookings, or internal use — trained on your business context.</p></div>
+        <div class="status">Available</div>
+      </div>
+      <div class="ledger-row">
+        <div class="no">02</div>
+        <div><h3>Web & mobile apps</h3><p>Custom apps that work on desktop and phone alike, built around the exact workflow your business needs.</p></div>
+        <div class="status">Available</div>
+      </div>
+      <div class="ledger-row">
+        <div class="no">03</div>
+        <div><h3>Automation & tools</h3><p>Internal tools that cut manual work — from data entry to reporting — so your team spends time on what matters.</p></div>
+        <div class="status">Available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head" style="margin:0 auto 40px; text-align:center;">
+      <div class="entry-tag" style="justify-content:center;">RECEIPT — COMPLETED PROJECT</div>
+      <h2>A personal assistant for everyday questions</h2>
+    </div>
+    <div class="receipt">
+      <div class="receipt-head">
+        <div class="slab">SR Group Assistant</div>
+        <div class="mono">PROJECT NO. 2026–07–01</div>
+      </div>
+      <div class="receipt-line"><span>Type</span><b>Bilingual AI assistant</b></div>
+      <div class="receipt-line"><span>Hosting cost</span><b>৳0 / month</b></div>
+      <div class="receipt-line"><span>Data privacy</span><b>Encrypted, on-device</b></div>
+      <div class="receipt-tags">
+        <span>English</span><span>বাংলা</span><span>Runs offline</span>
+      </div>
+      <div class="receipt-foot">
+        <div class="stamp-badge">DELIVERED</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="ruled">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="entry-tag">TRANSACTION HISTORY — OUR PROCESS</div>
+      <h2>From first call to live product</h2>
+      <p>A short, structured process — most projects go from kickoff to a working prototype in under two weeks.</p>
+    </div>
+    <div>
+      <div class="history-item">
+        <div class="date">STEP 01</div>
+        <div><h4>Understand the business</h4><p>A short call to learn how your business runs today and where a tool would actually help.</p></div>
+      </div>
+      <div class="history-item">
+        <div class="date">STEP 02</div>
+        <div><h4>Build a working prototype</h4><p>We build a real, usable version fast, so you can react to something concrete instead of a proposal.</p></div>
+      </div>
+      <div class="history-item">
+        <div class="date">STEP 03</div>
+        <div><h4>Refine together</h4><p>We adjust based on how your team actually uses it, until it fits the way you work.</p></div>
+      </div>
+      <div class="history-item">
+        <div class="date">STEP 04</div>
+        <div><h4>Deploy & support</h4><p>We handle hosting and setup, and stay on for support as your needs grow.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-panel">
+      <h2>Have a business problem worth solving?</h2>
+      <p>Tell us how your business runs today — we'll tell you what a custom tool could look like.</p>
+      <div class="contact-methods">
+        <a href="mailto:hossainalijms9@gmail.com">✉ hossainalijms9@gmail.com</a>
+        <a href="https://wa.me/8801976021175" target="_blank">💬 01976-021175 (WhatsApp only)</a>
+      </div>
+      <div class="stamp-rotate">OPEN FOR PROJECTS</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <svg class="footer-logo" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="120" cy="120" r="100" fill="#16302A"/>
+      <circle cx="120" cy="120" r="100" fill="none" stroke="#A8863C" stroke-width="5"/>
+      <circle cx="120" cy="120" r="84" fill="none" stroke="#A8863C" stroke-width="1.5" stroke-dasharray="3 5"/>
+      <text x="120" y="140" font-family="'Roboto Slab',serif" font-size="64" font-weight="700" fill="#F6F1E2" text-anchor="middle">SR</text>
+      <text x="120" y="68" font-family="'IBM Plex Mono',monospace" font-size="12" font-weight="600" letter-spacing="3" fill="#9FC2B4" text-anchor="middle">EST. 2026</text>
+      <text x="120" y="182" font-family="'IBM Plex Mono',monospace" font-size="12" font-weight="600" letter-spacing="2" fill="#9FC2B4" text-anchor="middle">GROUP</text>
+    </svg>
+    © <span id="year"></span> SR Group. Built in Rajshahi, Bangladesh. <span class="mono">— No. 2026–01</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const demoMessages = [
+  {role:'user', text:"What's a good breakfast idea?"},
+  {role:'assistant', text:"Based on what you usually ask about, try oats with banana and honey — quick and filling."},
+  {role:'user', text:'আজ আবহাওয়া কেমন থাকবে?'},
+  {role:'assistant', text:'আজ মূলত রোদ থাকবে, বিকেলে হালকা বৃষ্টির সম্ভাবনা আছে।'},
+];
+
+const container = document.getElementById('chat-demo');
+let i = 0;
+
+function playNext(){
+  if(i >= demoMessages.length){
+    setTimeout(() => {
+      container.innerHTML = '';
+      i = 0;
+      playNext();
+    }, 2200);
+    return;
+  }
+  const m = demoMessages[i];
+  const div = document.createElement('div');
+  div.className = 'bubble ' + m.role;
+  div.textContent = m.text;
+  container.appendChild(div);
+  requestAnimationFrame(() => div.classList.add('show'));
+  i++;
+  setTimeout(playNext, 1400);
+}
+playNext();
+</script>
+
+</body>
+</html>
